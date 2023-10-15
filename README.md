@@ -1,6 +1,6 @@
 # Briding Items and Language: A Transition Paradigm for Large Language Model-Based Recommendation
 
-:bulb: This is the pytorch implementation of our paper 
+:bulb: This is the implementation of our paper 
 > Briding Items and Language: A Transition Paradigm for Large Language Model-Based Recommendation
 
 ## Install
@@ -41,49 +41,49 @@ The reconstructed testing data is saved in './data/${dataset}/reconstructed/eval
 
 ### Training
 We use the fairseq to train TransRec-BART. The script for training is
-```bash
-    - fairseq-train
-        data/${dataset}/bin 
-        --finetune-from-model /bart.large/model.pt 
-        --arch bart_large 
-        --task translation 
-        --criterion label_smoothed_cross_entropy 
-        --source-lang source 
-        --target-lang target 
-        --truncate-source 
-        --label-smoothing 0.1 
-        --max-tokens 4096 
-        --update-freq 1 
-        --max-update 800000 
-        --required-batch-size-multiple 1
-        --validate-interval 1000000
-        --save-interval 1000000
-        --save-interval-updates 15000 
-        --keep-interval-updates 3 
-        --dropout 0.1 
-        --attention-dropout 0.1 
-        --relu-dropout 0.0 
-        --weight-decay 0.01 
-        --optimizer adam 
-        --adam-betas "(0.9, 0.999)" 
-        --adam-eps 1e-08 
-        --clip-norm 0.1 
-        --lr-scheduler polynomial_decay 
-        --lr 3e-05 
-        --total-num-update 800000 
-        --warmup-updates 500 
-        --fp16 
-        --num-workers 10 
-        --no-epoch-checkpoints 
-        --share-all-embeddings 
-        --layernorm-embedding 
-        --share-decoder-input-output-embed 
-        --skip-invalid-size-inputs-valid-test 
-        --log-format json
-        --log-interval 100 
-        --patience 5
-        --find-unused-parameters
-        --save-dir  checkpoints_${dataset}
+```
+fairseq-train
+    data/${dataset}/bin 
+    --finetune-from-model /bart.large/model.pt 
+    --arch bart_large 
+    --task translation 
+    --criterion label_smoothed_cross_entropy 
+    --source-lang source 
+    --target-lang target 
+    --truncate-source 
+    --label-smoothing 0.1 
+    --max-tokens 4096 
+    --update-freq 1 
+    --max-update 800000 
+    --required-batch-size-multiple 1
+    --validate-interval 1000000
+    --save-interval 1000000
+    --save-interval-updates 15000 
+    --keep-interval-updates 3 
+    --dropout 0.1 
+    --attention-dropout 0.1 
+    --relu-dropout 0.0 
+    --weight-decay 0.01 
+    --optimizer adam 
+    --adam-betas "(0.9, 0.999)" 
+    --adam-eps 1e-08 
+    --clip-norm 0.1 
+    --lr-scheduler polynomial_decay 
+    --lr 3e-05 
+    --total-num-update 800000 
+    --warmup-updates 500 
+    --fp16 
+    --num-workers 10 
+    --no-epoch-checkpoints 
+    --share-all-embeddings 
+    --layernorm-embedding 
+    --share-decoder-input-output-embed 
+    --skip-invalid-size-inputs-valid-test 
+    --log-format json
+    --log-interval 100 
+    --patience 5
+    --find-unused-parameters
+    --save-dir  checkpoints_${dataset}
 ```
 or use training_fairseq.sh
 ```
@@ -129,20 +129,20 @@ python evaluation/evaluate.py --dataset ${dataset}
 sh reconstruct.sh beauty 5
 sh make_evaluate.sh beauty
 ```
-2. Train on Beauty dataset
+2. Train on Beauty dataset.
 ```
 cd scripts/training
 sh training_fairseq.sh beauty
 ```
-3. Build FM-index 
+3. Build FM-index.
 ```
 python build_fm_index.py --dataset beauty
 ```
-4. Generate and ground the identifier to in-corpus items
+4. Generate and ground the identifier to in-corpus items.
 ```
 sh generate.sh 3 12 0 5
 ```
-5. Evaluate
+5. Evaluate.
 ```
 python evaluation/evaluate.py --dataset beauty
 ```
