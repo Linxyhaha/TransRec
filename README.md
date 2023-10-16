@@ -20,7 +20,7 @@ Reconstruct the training and the vaidation data based on multi-facet identifiers
 ```
 for FILE in train dev; do
     python scripts/trainining/reconstruct.py 
-        ./data/${dataset} ./data/${dataset}/reconstruct/tuning/$FILE 
+        ./data/${dataset}/rec_data ./data/${dataset}/reconstructed/tuning/$FILE 
         --n_substring ${num_substring}
 ```
 or use reconstruct.sh
@@ -31,7 +31,7 @@ The reconstructed data for tuning LLMs is saved in './data/${dataset}/reconstruc
 Reconstruct the testing data based on multi-facet identifiers by running ``make_evaluate.py``
 ```
 python scripts/evaluation/make_evaluate.py 
-    ./data/${dataset} ./data/${dataset}/reconstructed/evaluation/ 
+    ./data/${dataset}/rec_data ./data/${dataset}/reconstructed/evaluation/ 
 ```
 or use make_evaluate.sh
 ```
