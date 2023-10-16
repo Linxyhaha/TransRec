@@ -110,11 +110,11 @@ python generation_grounding/generate.py
     --checkpoint ./scripts/training/checkpoints_${dataset}/checkpoint_best.pt 
     --fm_index ./data/${dataset}/fm_index 
     --intra_facet_exponent ${gamma}
-    --score_bias_id ${bias_id} --score_bias_title ${bias_title} --score_bias_attribute ${bias_attibute} 
+    --score_bias_id ${bias_id} --score_bias_title ${bias_title} --score_bias_attribute ${bias_attribute} 
 ```
 or use generate.sh
 ```
-sh generate.sh <gamma> <bias_id> <bias_title> <bias_attribute> 
+sh generate.sh <dataset> <gamma> <bias_id> <bias_title> <bias_attribute> 
 ```
 The explanation of hyper-parameters and the default hyper-parameters can be found in 'hyper-parameters.txt'. 
 
