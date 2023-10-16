@@ -125,7 +125,7 @@ if __name__ == "__main__":
             return bart.encode(" " + text.strip()).tolist()[1:]
 
     args.input = f"../data/{args.dataset}/rec_data"
-    args.output = f"../data/{args.dataset}/fm_index"
+    args.output = f"../data/{args.dataset}/fm_index/fm_index"
     index = build_index(args.input)
 
     index.save(args.output)
