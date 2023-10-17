@@ -23,8 +23,8 @@ sh make_evaluate.sh <dataset>
 The reconstructed testing data is saved in './data/${dataset}/reconstructed/evaluation/' folder.
 
 #### Example 
-- Reconstruct the instruction data of Beauty for tuning LLMs and evaluation.
+- Reconstruct the instruction data of Toys for tuning LLMs and evaluation.
 ```
-sh reconstruct.sh beauty 5
-sh make_evaluate.sh beauty
+sh reconstruct.sh toys 5
+sh make_evaluate.sh toys
 ```
