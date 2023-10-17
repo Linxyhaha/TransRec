@@ -15,7 +15,7 @@ pip install -e .
 ### Data
 The experimental data are in './data' folder, including Beauty, Yelp, and Toys.
 
-### Item Indexing and Data Reconstruction
+### :white_circle: Item Indexing and Data Reconstruction
 Reconstruct the training and the vaidation data based on multi-facet identifiers by running ``reconstruct.py``
 ```
 for FILE in train dev; do
