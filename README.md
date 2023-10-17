@@ -39,7 +39,7 @@ sh make_evaluate.sh <dataset>
 ```
 The reconstructed testing data is saved in './data/${dataset}/reconstructed/evaluation/' folder. 
 
-### Training
+### :red_circle: Training
 We use the fairseq to train TransRec-BART. The script for training is
 ```
 fairseq-train
@@ -92,7 +92,7 @@ sh training_fairseq.sh <dataset>
 ```
 The model will be saved in the 'scirpts/training/checkpoints_${dataset}/' folder, where ${dataset} can be chosen from "beauty", "toys", and "yelp". 
 
-### Inference 
+### :large_blue_circle: Inference 
 #### Step 0. Building FM-index
 Build the FM-index by running ``build_fm_index.py``
 ```
@@ -100,7 +100,7 @@ python build_fm_index.py --dataset <dataset>
 ```
 The FM-index will be saved in './data/${dataset}/fm_index/' folder. 
 
-#### Step 1. generation grounding
+#### Step 1. Generation grounding
 Get the recommended items of TransRec by running ``generate.py``
 ```
 python generation_grounding/generate.py 
@@ -118,7 +118,7 @@ sh generate.sh <dataset> <gamma> <bias_id> <bias_title> <bias_attribute>
 ```
 The explanation of hyper-parameters and the default hyper-parameters can be found in 'hyper-parameters.txt'. 
 
-#### Step 2. evaluation
+#### Step 2. Evaluation
 Get the evaluation results of TransRec by running ``evaluate.py``
 ```    
 python evaluation/evaluate.py --dataset ${dataset}
