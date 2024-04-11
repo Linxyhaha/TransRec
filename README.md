@@ -1,7 +1,9 @@
-# Briding Items and Language: A Transition Paradigm for Large Language Model-Based Recommendation
+# Bridging Items and Language: A Transition Paradigm for Large Language Model-Based Recommendation
 
 :bulb: This is the implementation of our paper 
-> Briding Items and Language: A Transition Paradigm for Large Language Model-Based Recommendation
+> Bridging Items and Language: A Transition Paradigm for Large Language Model-Based Recommendation
+
+> :small_orange_diamond: The baseline implementations can be found in "./baselines" folder, including the TIGER, and various indexing methods (SID, SemID+IID, and CID+IID). 
 
 ## Install
 ```
