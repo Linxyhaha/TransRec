@@ -1,9 +1,10 @@
 # Bridging Items and Language: A Transition Paradigm for Large Language Model-Based Recommendation
 
-:bulb: This is the implementation of our paper 
-> Bridging Items and Language: A Transition Paradigm for Large Language Model-Based Recommendation
+:bulb: This is the implementation of our paper accepted by KDD 2024.
+> [Bridging Items and Language: A Transition Paradigm for Large Language Model-Based Recommendation](https://arxiv.org/pdf/2310.06491)
 
-:small_orange_diamond: The baseline implementations can be found in "./baselines" folder, including the TIGER, and various indexing methods (SID, SemID+IID, and CID+IID). 
+> Xinyu Lin, Wenjie Wang, Yongqi Li, Fuli Feng, See-Kiong Ng, and Tat-Seng Chua
+
 
 ## Install
 ```
@@ -89,7 +90,7 @@ fairseq-train
     --log-interval 100 
     --patience 5
     --find-unused-parameters
-    --save-dir  checkpoints_${dataset}
+    --save-dir checkpoints_${dataset}
 ```
 or use training_fairseq.sh
 ```
@@ -152,3 +153,20 @@ sh generate.sh 3 12 0 5
 ```
 python evaluation/evaluate.py --dataset beauty
 ```
+
+## Citation
+If you find our work is useful for your research, please consider citing: 
+```
+@inproceedings{lin2024bridge,
+  title={Bridging Items and Language: A Transition Paradigm for Large Language Model-Based Recommendation},
+  author={Xinyu Lin, Wenjie Wang, Yongqi Li, Fuli Feng, See-Kiong Ng, Tat-Seng Chua},
+  booktitle={KDD},
+  year={2024}
+}
+```
+
+## License
+NUS © [NExT++](https://www.nextcenter.org/)
+
+## Acknowledgement
+Part of the code is based on [SEAL](https://github.com/facebookresearch/SEAL) and [sdsl-life](https://github.com/simongog/sdsl-lite).
