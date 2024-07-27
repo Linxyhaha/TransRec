@@ -47,7 +47,8 @@ def parse_args():
 
 def load_tokenizer():
     bart_tokenizer, _ = load_bart(
-        bart_model_path='your_bart_model_path', 
+        # bart_model_path='your_bart_model_path', 
+        bart_model_path=None,
         device='cpu', 
         backbone="facebook/bart-large", 
         fairseq_checkpoint=True
@@ -205,7 +206,7 @@ def main():
         s_attr = " " + s_attr.strip() 
         source_list.append({'question_title':s_title, 'question_id':s_id, 'question_attribute':s_attr})
 
-    with open(args.output + 'query.json', mode=args.mode) as src:
+    with open(args.output + 'instruction_input.json', "w") as src:
         json.dump(source_list, src, indent="    ")
 
 if __name__ == '__main__':

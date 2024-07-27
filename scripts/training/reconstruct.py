@@ -8,7 +8,6 @@ import tqdm
 import math
 import gzip
 import numpy as np
-import ipdb
 
 from fuzzywuzzy import fuzz
 from nltk.corpus import stopwords
@@ -226,7 +225,7 @@ def iterator(args):
                 if "\n" in target:
                     target = "".join(target.split('\n'))
                     
-                if args.target == "ID":
+                if args.target == "id":
                     target = "|| " + target.strip() + " ##"
                     yield source + " || +", target
                     
@@ -243,7 +242,7 @@ def main():
 
         # ID facet
         args.target = "id"
-        args.query_mode = "query_mode"
+        args.query_mode = "id"
         for source, target in iterator(args):
             source = " " + source.strip()
             target = " " + target.strip()
@@ -253,6 +252,7 @@ def main():
 
         # title facet
         args.target = "title"
+        args.query_mode = "title"
         for source, target in iterator_span_title(args):
             source = " " + source.strip()
             target = " " + target.strip()
@@ -261,6 +261,8 @@ def main():
             tgt.write(target + "\n")
 
         # attribute facet
+        args.target = "attribute"
+        args.query_mode = "attribute"
         for source, target in iterator(args):
             source = " " + source.strip()
             target = " " + target.strip()

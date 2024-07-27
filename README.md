@@ -42,7 +42,11 @@ sh make_evaluate.sh <dataset>
 The reconstructed testing data is saved in './data/${dataset}/reconstructed/evaluation/' folder. 
 
 ### :red_circle: Training
-We use the fairseq to train TransRec-BART. The script for training is
+1. Before training, we need to do pre-process for fairseq training
+```
+sh preprocess_fairseq.sh <dataset>
+```
+2. We then use the fairseq to train TransRec-BART. The script for training is
 ```
 fairseq-train
     data/${dataset}/bin 

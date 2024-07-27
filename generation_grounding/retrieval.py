@@ -109,7 +109,7 @@ def batch_generate_keys(searcher, queries, constrained_generation=True):
                         length_penalty=0.0,
                         strip_from_bos=[ 
                             searcher.title_bos_token_id,
-                            searcher.code_bos_token_id,
+                            searcher.id_bos_token_id,
                             searcher.attribute_bos_token_id,
                             searcher.bart_model.config.decoder_start_token_id],
                         strip_from_eos=[searcher.bart_model.config.eos_token_id])
@@ -136,12 +136,12 @@ def batch_generate_keys(searcher, queries, constrained_generation=True):
                 max_length=10,
                 num_beams=searcher.beam,
                 length_penalty=searcher.length_penalty,
-                eos_token_id=searcher.code_eos_token_id,
+                eos_token_id=searcher.id_eos_token_id,
                 diverse_bs_groups=searcher.diverse_bs_groups,
                 diverse_bs_penalty=searcher.diverse_bs_penalty,
                 keep_history=True,
-                forced_bos_token_id=searcher.code_bos_token_id,
-                # force_decoding_from=[searcher.code_bos_token_id],
+                forced_bos_token_id=searcher.id_bos_token_id,
+                # force_decoding_from=[searcher.id_bos_token_id],
                 disable_fm_index=not constrained_generation,
             )
 
@@ -153,8 +153,8 @@ def batch_generate_keys(searcher, queries, constrained_generation=True):
                 # new_fk[:] = [(s, k[1:] if k[0] in searcher.strip_token_ids else k) for s, k in new_fk]
                 new_fk[:] = [(s, k[1:-1] if k[-1] in searcher.strip_token_ids else k[1:]) for s, k in new_fk if k]
                 if not searcher.partial_id:
-                    new_fk[:] = [(s, k) for s, k in new_fk if k and (k[-1] == searcher.code_eos_token_id)]
-                new_fk[:] = [(s, [searcher.code_bos_token_id] + k if k[0] != searcher.code_bos_token_id else k) for s, k in new_fk if k]
+                    new_fk[:] = [(s, k) for s, k in new_fk if k and (k[-1] == searcher.id_eos_token_id)]
+                new_fk[:] = [(s, [searcher.id_bos_token_id] + k if k[0] != searcher.id_bos_token_id else k) for s, k in new_fk if k]
                 new_fk[:] = [(s, k)  for s, k in new_fk if k and searcher.fm_index.get_count(k) > 0]
 
             if searcher.rescore and searcher.use_markers:
@@ -169,7 +169,7 @@ def batch_generate_keys(searcher, queries, constrained_generation=True):
                     length_penalty=0.0,
                     strip_from_bos=[
                         searcher.title_bos_token_id,
-                        searcher.code_bos_token_id,
+                        searcher.id_bos_token_id,
                         searcher.attribute_bos_token_id,
                         searcher.bart_model.config.decoder_start_token_id],
                     strip_from_eos=[searcher.bart_model.config.eos_token_id])
@@ -247,7 +247,7 @@ def batch_generate_keys(searcher, queries, constrained_generation=True):
                     strip_from_bos=[
                         searcher.title_bos_token_id,
                         searcher.attribute_bos_token_id,
-                        searcher.code_bos_token_id,
+                        searcher.id_bos_token_id,
                         searcher.bart_model.config.decoder_start_token_id],
                     strip_from_eos=[searcher.bart_model.config.eos_token_id])
     
@@ -277,7 +277,7 @@ def batch_generate_keys(searcher, queries, constrained_generation=True):
                 length_penalty=0.0,
                 strip_from_bos=[
                     searcher.title_bos_token_id,
-                    searcher.code_bos_token_id,
+                    searcher.id_bos_token_id,
                     searcher.bart_model.config.decoder_start_token_id],
                 strip_from_eos=[searcher.bart_model.config.eos_token_id])
 
@@ -391,7 +391,7 @@ class Searcher:
         "length_penalty": 0.0,
         "scoring_length_penalty": 0.0,
         "repetition_penalty": 0.8,
-        "score_exponent": 2.0,
+        "intra_facet_exponent": 2.0,
         "beam": 15,
         "max_hits": 1500,
         "fully_score": 1500,
@@ -755,7 +755,7 @@ class Searcher:
             index=self.fm_index,
             max_occurrences_1=self.max_hits,
             n_docs_complete_score=self.fully_score,
-            alpha=self.score_exponent,
+            alpha=self.intra_facet_exponent,
             beta=self.repetition_penalty,
             length_penalty=self.scoring_length_penalty,
             use_fm_index_frequency=self.use_fm_index_frequency,

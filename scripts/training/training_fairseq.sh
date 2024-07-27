@@ -1,8 +1,9 @@
 DATASET_NAME=$1
-DATASET=../../data/${DATASET}/reconstructed/tuning
+DATASET=../../data/${DATASET_NAME}/reconstructed/tuning
 # This folder should contain the correct files if you have run scripts/training/preprocess_fairseq.sh before!
 
 BART_FILES=/your_path_to_BART_files/
+# BART_FILES=/storage/xylin/recommendation/LLM/code/BART_FILES
 # $BART_FILES must contain the following file:
 # - $BART_FILES/bart.large/model.pt - https://dl.fbaipublicfiles.com/fairseq/models/bart.large.tar.gz (decompress)
 
